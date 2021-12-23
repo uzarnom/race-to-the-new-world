@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/Ship Parts/Scripts/weight.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+albedo_color = Color( 0.901961, 0.137255, 0.137255, 0.388235 )
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+size = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "growAnimation"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.25, 0.25, 0.25 ), Vector3( 1, 1, 1 ) ]
+}
+
+[sub_resource type="CapsuleMesh" id=5]
+
+[node name="weight" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../MeshInstance")
+anims/RESET = SubResource( 3 )
+anims/growAnimation = SubResource( 4 )
+
+[node name="up-direction" type="MeshInstance" parent="."]
+transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -1, 0, 0.5, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 5 )
+material/0 = null

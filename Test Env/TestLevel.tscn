@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/Main Hull.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Main Hull.gd" type="Script" id=2]
+[ext_resource path="res://Test Env/Level Meshes/Level-Test-1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/Ship Parts/Helms/helm_lvl_1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/BuildMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/Levels.gd" type="Script" id=8]
+[ext_resource path="res://assets/Ships/Ship_1_Test.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/Ships/Ship.gd" type="Script" id=10]
+[ext_resource path="res://assets/Ship Parts/weight.tscn" type="PackedScene" id=11]
+
+[node name="Level" type="Spatial"]
+script = ExtResource( 8 )
+
+[node name="BuildMenu" parent="." instance=ExtResource( 7 )]
+visible = false
+
+[node name="Interactable_Label" type="Label" parent="."]
+visible = false
+margin_right = 239.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+custom_constants/shadow_as_outline = 1
+text = "Press E to Access"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mainhull" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7057, 2.81207, 0 )
+script = ExtResource( 2 )
+
+[node name="Camera_Point" type="Spatial" parent="Mainhull"]
+transform = Transform( -3.99199e-08, -0.407374, 0.913261, -1.78069e-08, 0.913261, 0.407374, -1, 0, -4.37114e-08, 2.30424, 1.47518, 0 )
+
+[node name="Parts" type="Spatial" parent="Mainhull"]
+
+[node name="Helm" parent="Mainhull/Parts" instance=ExtResource( 6 )]
+transform = Transform( -0.1, -9.4248e-05, -1.50996e-08, -9.4248e-05, 0.1, -2.86753e-17, 1.50996e-08, 1.4231e-11, -0.1, 0.353448, 0.455902, 0.167444 )
+
+[node name="Level-Test-1" parent="." instance=ExtResource( 3 )]
+
+[node name="Ship_1_Test" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.2611, 1.87146, 4.5423 )
+mass = 10.0
+gravity_scale = 0.01
+script = ExtResource( 10 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.6692, 2.07989, 0 )
+
+[node name="weight" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.7904, 2.36453, 0 )
