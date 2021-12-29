@@ -2,7 +2,7 @@ extends KinematicBody
 
 # Player Movement Varibales  
 export var speed = 15
-export var gravity = 12.25
+export var gravity = 20
 export var jumpforce = 10
 var acceleration = 5
 
@@ -38,6 +38,7 @@ var currentInputMode
 
 # Build Mode Variables
 var buildable:Node = null
+var buildableToInstance = null
 var buildMenu:Node = null
 
 
@@ -101,7 +102,7 @@ func _physics_process(delta: float):
 		
 	# Apply Gravity, check for jump and if on floor
 	var snapDist = 0.2
-	var snap = Vector3.DOWN * snapDist#if is_on_floor() else Vector3.ZERO
+	snap = Vector3.DOWN * snapDist#if is_on_floor() else Vector3.ZERO
 	
 	if(!is_on_floor()): #if not on floor apply gravity, disable snapping
 		gravity_vec += Vector3.DOWN * gravity * delta
@@ -153,7 +154,7 @@ func _physics_process(delta: float):
 	# Build Menu Functions
 	# **********************
 	if(currentInputMode == InputMode.BuildMode):
-		var tempBuildable:Node = null
+		var tempBuildable:PackedScene = null
 		if(Input.is_action_just_pressed("builditem1")):
 			print("Send Signal build Item 1 to player?")
 			tempBuildable = buildMenu.receiveInput(1)
@@ -163,11 +164,22 @@ func _physics_process(delta: float):
 		if(Input.is_action_just_pressed("builditem3")):
 			print("Send Signal build Item 3 to player?")
 			tempBuildable = buildMenu.receiveInput(3)
+		if(Input.is_action_just_pressed("builditem4")):
+			tempBuildable = buildMenu.receiveInput(4)
+		if(Input.is_action_just_pressed("builditem5")):
+			tempBuildable = buildMenu.receiveInput(5)
+		if(Input.is_action_just_pressed("builditem6")):
+			tempBuildable = buildMenu.receiveInput(6)
+		if(Input.is_action_just_pressed("builditem7")):
+			tempBuildable = buildMenu.receiveInput(7)
+		if(Input.is_action_just_pressed("builditem8")):
+			tempBuildable = buildMenu.receiveInput(8)
 			
 		if(tempBuildable != null):
 			if(buildable != null):
 				buildable.queue_free()
-			buildable = tempBuildable
+			buildable = tempBuildable.instance()
+			buildableToInstance = tempBuildable
 			add_child(buildable)
 			
 		# If there is a selected buildable, show it at the correect position
@@ -218,7 +230,7 @@ func showBuildable():
 	else:
 		#print("Collision Point " + str(castResult.get_collision_point()))
 		#print("Collision Normals " + str(castResult.get_collision_normal()))
-		#add_child(buildable)		
+		#add_child(buildable)
 		#buildable.translation = castResult.get_collision_point()
 		buildable.global_transform.origin = castResult.get_collision_point()
 
@@ -252,6 +264,8 @@ func build(ship:Node, castResult):
 #			print("Buildable location: " + str(buildable.global_transform))
 #			print("Intended Location: " + str(castResult.get_collision_point()))
 	buildable = null
+	buildable = buildableToInstance.instance()
+	add_child(buildable)
 	#ship.triggerRecalc()
 	pass
 

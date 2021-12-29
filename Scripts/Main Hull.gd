@@ -138,17 +138,17 @@ func returnCameraAndControlTo(RetTarget:Node):
 	MainLevel.changeInputMode(InputMode.PlayerMode)
 	return
 	# RetTarget #The Player Hopefully
-	print("The Return Target: " + RetTarget.name)
-	var Cam = get_node("Camera_Point").get_node("Camera")
-	
-	if(Cam == null):
-		print("The Camera is not located under this object: " + name)
-		return
-		
-	# Remove from this and add the camera new parent
-	get_node("Camera_Point").remove_child(Cam)
-	RetTarget.get_node("Camera_Point").add_child(Cam)
-	Cam.global_transform.origin = RetTarget.get_node("Camera_Point").global_transform.origin
+#	print("The Return Target: " + RetTarget.name)
+#	var Cam = get_node("Camera_Point").get_node("Camera")
+#
+#	if(Cam == null):
+#		print("The Camera is not located under this object: " + name)
+#		return
+#
+#	# Remove from this and add the camera new parent
+#	get_node("Camera_Point").remove_child(Cam)
+#	RetTarget.get_node("Camera_Point").add_child(Cam)
+#	Cam.global_transform.origin = RetTarget.get_node("Camera_Point").global_transform.origin
 
 # **********************
 # Build system

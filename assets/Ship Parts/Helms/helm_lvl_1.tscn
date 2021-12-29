@@ -39,7 +39,6 @@ surfaces/0 = {
 extents = Vector3( 1.72637, 1.36706, 1.9868 )
 
 [node name="Helm" type="Spatial"]
-transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="Cube" type="MeshInstance" parent="."]
