@@ -254,10 +254,13 @@ func showBuildable():
 	pass
 	
 func build(ship:Node, castResult):
+	
 	remove_child(buildable)
+	var _tempRotation = rotation
 	#var ship = get_parent().get_node("Mainhull")
 	ship.get_node("Parts").add_child(buildable)
 	buildable.global_transform.origin = castResult.get_collision_point()
+	buildable.rotation = _tempRotation
 #	buildable.scale.x = 0.25
 #	buildable.scale.y = 0.25
 #	buildable.scale.z = 0.25
