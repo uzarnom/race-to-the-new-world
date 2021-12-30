@@ -5,15 +5,15 @@ var type = "Ship" # should use an enum
 
 
 # Variables based on the attached parts
-var maxSpeed = 3
-var lift = 9.8
-var speed = 5
-var acceleration = 0.5
+export var maxSpeed = 3
+export var lift = 9.8
+export var speed = 5
+export var acceleration = 0.5
 
 # height bobbing velocity
 var yVel = Vector3()
 var targetAlt
-var liftIncr = 0.1
+var liftIncr = 0.2
 
 # Input Mode variables
 var MainLevel:Node

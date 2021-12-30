@@ -48,6 +48,9 @@ var buildMenu:Node = null
 #		print(0 in testEnum.values())
 #		print(testEnum.One == 0)
 
+# Test Variables remove after
+var printDelta = 0
+
 func _ready():
 	# setup Input
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -101,7 +104,7 @@ func _physics_process(delta: float):
 			direction -= transform.basis.z
 		
 	# Apply Gravity, check for jump and if on floor
-	var snapDist = 0.2
+	var snapDist = 100
 	snap = Vector3.DOWN * snapDist#if is_on_floor() else Vector3.ZERO
 	
 	if(!is_on_floor()): #if not on floor apply gravity, disable snapping
@@ -119,13 +122,20 @@ func _physics_process(delta: float):
 	# Get direction and apply the inputs to its urrently facing position
 	direction = direction.normalized()
 	velocity = direction * speed
-	velocity.linear_interpolate(velocity, acceleration * delta)
+	#velocity.linear_interpolate(velocity, acceleration * delta)
 	velocity = velocity + gravity_vec
 	#move_and_slide(velocity, Vector3.UP) # Old Movement 
 	#var snap = Vector3.DOWN if is_on_floor() else Vector3.ZERO
 	velocity += lastFramesVel
 	lastFramesVel = move_and_slide_with_snap(velocity, snap, Vector3.UP) # Stick to moving platform
 	lastFramesVel -= velocity
+	
+	printDelta += delta
+	if(printDelta >= 1):
+		print("Still Moving and Sliding: " + str(lastFramesVel))
+		print("Is On Floor: " + str(is_on_floor()))
+		print("Snap: " + str(snap))
+		printDelta = 0
 	
 	# **********************
 	# Interactions system
