@@ -6,6 +6,10 @@ var ItemImage:String
 var ItemName:String
 var folder:String
 var fileName:String
+
+var type:String
+var hp:int = 1
+
 var mass:float = 0
 var lift:float = 0
 var acceleration:float = 0

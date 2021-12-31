@@ -49,7 +49,7 @@ var buildMenu:Node = null
 #		print(testEnum.One == 0)
 
 # Test Variables remove after
-var printDelta = 0
+#var printDelta = 0
 
 func _ready():
 	# setup Input
@@ -130,12 +130,12 @@ func _physics_process(delta: float):
 	lastFramesVel = move_and_slide_with_snap(velocity, snap, Vector3.UP) # Stick to moving platform
 	lastFramesVel -= velocity
 	
-	printDelta += delta
-	if(printDelta >= 1):
-		print("Still Moving and Sliding: " + str(lastFramesVel))
-		print("Is On Floor: " + str(is_on_floor()))
-		print("Snap: " + str(snap))
-		printDelta = 0
+#	printDelta += delta
+#	if(printDelta >= 1):
+#		print("Still Moving and Sliding: " + str(lastFramesVel))
+#		print("Is On Floor: " + str(is_on_floor()))
+#		print("Snap: " + str(snap))
+#		printDelta = 0
 	
 	# **********************
 	# Interactions system
