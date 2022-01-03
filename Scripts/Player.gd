@@ -235,6 +235,10 @@ func showBuildable():
 	# var castResult = castRay()
 	var castResult = castRayFromCamera()
 	
+	# Ignore the buildable object if it exists
+	if(buildable != null): # add the currently building thing to the exceptions
+		castResult.add_exception(buildable.get_node("PlayerCollision"))
+	
 	if(castResult == null):
 		print("Raycast: no object under the ray cast")
 	else:
@@ -285,6 +289,8 @@ func build(ship:Node, castResult):
 func castRay():
 	var startPos = translation
 	
+	
+	
 	#print("start Position:" + str(startPos))
 	#print("Basis" + str(transform.basis))
 	
@@ -301,10 +307,12 @@ func castRayFromCamera():
 		return rayCast
 	
 	rayCast.add_exception(self) # disble interaction with Player
+	if(buildable != null): # add the currently building thing to the exceptions
+		rayCast.add_exception(buildable)
 	# rayCast.add_exception($Camera_Point) # Disable interaciton with Camera point (not needed as not part of the collision layer)
 	# rayCast.add_exception($Camera_Point/Camera) # Disable interaciton with - see above
 	
-	var collider = rayCast.get_collider() # ??? never seems to collide
+#	var collider = rayCast.get_collider() # ??? never seems to collide
 	
 	#if(collider == null):
 	#	print("No collidable object")

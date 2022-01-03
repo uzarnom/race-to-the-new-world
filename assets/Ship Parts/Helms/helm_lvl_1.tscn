@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://imports/Material.material" type="Material" id=1]
 [ext_resource path="res://assets/Ship Parts/Scripts/Helm - Basic.gd" type="Script" id=2]
@@ -38,6 +38,9 @@ surfaces/0 = {
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 1.72637, 1.36706, 1.9868 )
 
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 0.626874, 1.11293, 0.43517 )
+
 [node name="Helm" type="Spatial"]
 script = ExtResource( 2 )
 
@@ -51,13 +54,21 @@ transform = Transform( 0.619667, 0, 0, 0, 0.619667, 0, 0, 0, 0.083554, 0, 1.521,
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="PlayerCollision" type="Area" parent="."]
+[node name="InteractableCollision" type="Area" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="InteractableCollision"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35199, 1.3432 )
+shape = SubResource( 4 )
+
+[node name="PlayerCollision" type="KinematicBody" parent="."]
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="PlayerCollision"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35199, 1.3432 )
-shape = SubResource( 4 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09314, 0.139711 )
+shape = SubResource( 5 )
 
-[connection signal="body_entered" from="PlayerCollision" to="." method="_on_PlayerCollision_body_entered"]
-[connection signal="body_exited" from="PlayerCollision" to="." method="_on_PlayerCollision_body_exited"]
+[connection signal="body_entered" from="InteractableCollision" to="." method="_on_PlayerCollision_body_entered"]
+[connection signal="body_exited" from="InteractableCollision" to="." method="_on_PlayerCollision_body_exited"]

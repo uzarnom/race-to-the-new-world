@@ -140,6 +140,7 @@ alt_leftward={
 
 3d_physics/layer_1="Ship Physics"
 3d_physics/layer_2="Player Physics"
+3d_physics/layer_3="Player Interactable"
 
 [physics]
 

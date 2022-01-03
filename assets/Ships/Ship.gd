@@ -6,11 +6,11 @@ var type = "Ship" # should use an enum
 
 # Variables based on the attached parts
 export var maxSpeed = 3
-export var maxRot = deg2rad(90)
+export var maxRot = deg2rad(30)
 export var lift = 9.8
 export var speed = 5
 export var acceleration = 0.5
-export var rotVel = Vector3(0,deg2rad(30),0)
+export var rotVel = Vector3(0,deg2rad(5),0)
 
 # height bobbing velocity
 var yVel = Vector3()
