@@ -60,3 +60,18 @@ func interact(body:Node):
 #	print("New Cam Point " + str(Ship.get_node("Camera_Point").global_transform.origin))
 	
 #	buildable.global_transform.origin = castResult.get_collision_point()
+
+# **********************
+# Functions all ship parts will need
+# **********************
+# sets up the parts internal varaibles 
+func ShipPartSetup():
+	# place the ready function things here, will need to duplicate across all other ship parts
+	pass
+# returns whether the placement is valid or not
+func ValidPlacement():
+	return true
+	
+# If the placement is valid, this will show a green outline, else red 
+func DisplayValidPlacement():
+	pass
