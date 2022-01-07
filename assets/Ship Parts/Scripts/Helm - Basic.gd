@@ -1,4 +1,4 @@
-extends Spatial
+extends "res://Scripts/Classes/Part.gd"
 
 var Data = load("res://Scripts/Classes/Part.gd").new()
 
@@ -7,10 +7,10 @@ var InputMode
 var MainLevel
 
 func _ready():
-	Data.ItemImage = "res://assets/Ship Parts/Helms/helm.png"
-	Data.ItemName = "Helm lvl 1"
-	Data.folder = "res://assets/Ship Parts/Helms/"
-	Data.fileName = "Helm_lvl_1.tscn"
+	itemImage = "res://assets/Ship Parts/Helms/helm.png"
+	itemName = "Helm lvl 1"
+	folder = "res://assets/Ship Parts/Helms/"
+	fileName = "Helm_lvl_1.tscn"
 	
 	# Input Mode changes
 	MainLevel = get_tree().get_root().get_node("Level")

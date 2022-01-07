@@ -247,11 +247,11 @@ func ScanDirectory(toScan:String):
 					var newItem = ItemPreLoad.new()
 					newItem.folder = toScan
 					newItem.fileName = file
-					newItem.ItemImage = toScan + "/" + file.substr(0, file.length()-5) + '.png'
-					print("Image Name "+ newItem.ItemImage)
+					newItem.itemImage = toScan + "/" + file.substr(0, file.length()-5) + '.png'
+					print("Image Name "+ newItem.itemImage)
 					# Verify we have an image for the resrouce, and append if we have both
 					var temp_file = File.new()
-					if(temp_file.file_exists(newItem.ItemImage)):
+					if(temp_file.file_exists(newItem.itemImage)):
 						retArr.append(newItem)
 					else:
 						print(str(file) + " Does not have an accompanying .png")
@@ -280,8 +280,8 @@ func DisplayScannedDirectory(directory:Array):
 			var iconPath = currentFolder + "/" + file + ".png"
 			texture = ResourceLoader.load(iconPath)
 		else: # is a folder
-			print(file.ItemImage)
-			texture = ResourceLoader.load(file.ItemImage)
+			print(file.itemImage)
+			texture = ResourceLoader.load(file.itemImage)
 			
 		newRect.texture = texture
 		newRect.rect_scale.x = 0.5
