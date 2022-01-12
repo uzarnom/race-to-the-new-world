@@ -7,10 +7,10 @@ func _ready():
 	fileName = "Crate.tscn"
 	pass
 
-func _process(delta: float):
-	if(Input.is_action_just_pressed("testingTrigger")):
-		print("New Trigger")
-		ValidPlacement()
+#func _process(delta: float):
+#	if(Input.is_action_just_pressed("testingTrigger")):
+#		print("New Trigger")
+#		ValidPlacement()
 
 # **********************
 # Placement and stuff variables
@@ -45,7 +45,6 @@ func ValidPlacement() -> bool:
 			
 	# placement is valid
 	return true 
-	print("Done")
 	
 	
 # If the placement is valid, this will show a green outline, else red 

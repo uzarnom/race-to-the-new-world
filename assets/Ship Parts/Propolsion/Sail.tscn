@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://imports/mast-gold-trim.material" type="Material" id=1]
 [ext_resource path="res://imports/mast-wood.material" type="Material" id=2]
 [ext_resource path="res://imports/mast-sail.material" type="Material" id=3]
+[ext_resource path="res://assets/Ship Parts/Scripts/Sail.gd" type="Script" id=4]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "1 Mast_Cylinder"
@@ -47,9 +48,18 @@ surfaces/0 = {
 }
 
 [sub_resource type="BoxShape" id=3]
-extents = Vector3( 0.266055, 1.78305, 0.271172 )
+extents = Vector3( 0.28272, 1.81042, 0.276895 )
 
-[node name="Sail" type="StaticBody"]
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+albedo_color = Color( 0.745098, 0.141176, 0.141176, 0.647059 )
+
+[sub_resource type="CubeMesh" id=5]
+material = SubResource( 4 )
+size = Vector3( 0.55, 2, 0.55 )
+
+[node name="Sail" type="Spatial"]
+script = ExtResource( 4 )
 
 [node name="Mast" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
@@ -62,6 +72,24 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="PlayerCollision" type="KinematicBody" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="PlayerCollision"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77411, 0 )
 shape = SubResource( 3 )
+
+[node name="PlacementCollision" type="Area" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="PlacementCollision"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77411, 0 )
+shape = SubResource( 3 )
+
+[node name="Invalid" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.961737, 0 )
+visible = false
+mesh = SubResource( 5 )
+material/0 = null
