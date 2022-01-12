@@ -61,8 +61,8 @@ func _physics_process(delta: float):
 			hasRot = true
 		TempVec = TempVec * acelByDelta
 		
-	if(Input.is_action_just_pressed("testingTrigger")):
-		print("Current Input Mode = " + str(currentInputMode))
+#	if(Input.is_action_just_pressed("testingTrigger")):
+#		print("Current Input Mode = " + str(currentInputMode))
 		
 	
 	if(Input.is_action_just_pressed("cancelControl") and currentInputMode == InputMode.ShipMode):

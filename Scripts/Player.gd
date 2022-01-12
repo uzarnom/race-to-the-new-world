@@ -40,6 +40,7 @@ var currentInputMode
 var buildable:Node = null
 var buildableToInstance = null
 var buildMenu:Node = null
+var buildableValidPlacement:bool = true
 
 
 # enum testing - keep for reference
@@ -238,6 +239,9 @@ func showBuildable():
 	# Ignore the buildable object if it exists
 	if(buildable != null): # add the currently building thing to the exceptions
 		castResult.add_exception(buildable.get_node("PlayerCollision"))
+		if(buildable.ValidPlacement() != buildableValidPlacement):
+			buildableValidPlacement = buildable.ValidPlacement()
+			buildable.DisplayValidPlacement(buildableValidPlacement)
 	
 	if(castResult == null):
 		print("Raycast: no object under the ray cast")
@@ -253,7 +257,7 @@ func showBuildable():
 			var ship = castResult.get_collider().get_parent()
 			
 			if("type" in ship):
-				if(ship.type == "Ship"):
+				if(ship.type == "Ship" && buildable.ValidPlacement()):
 					print("call Build function")
 					build(ship, castResult)
 				else:

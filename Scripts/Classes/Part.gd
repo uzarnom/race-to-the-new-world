@@ -9,7 +9,7 @@ var fileName:String # "name.tscn"
 
 var description:String
 
-var type:String
+var type:String = "Ship Part"
 var hp:int = 1
 
 var mass:float = 0
@@ -33,5 +33,5 @@ func ValidPlacement():
 	return true
 	
 # If the placement is valid, this will show a green outline, else red 
-func DisplayValidPlacement():
+func DisplayValidPlacement(canPlace: bool):
 	pass

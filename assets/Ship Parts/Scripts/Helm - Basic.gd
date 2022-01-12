@@ -73,5 +73,5 @@ func ValidPlacement():
 	return true
 	
 # If the placement is valid, this will show a green outline, else red 
-func DisplayValidPlacement():
-	pass
+#func DisplayValidPlacement():
+#	pass
