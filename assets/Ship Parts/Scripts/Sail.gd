@@ -5,3 +5,43 @@ func _ready():
 	itemName = "Sail"
 	folder = "res://assets/Ship Parts/Propolsion/"
 	fileName = "Sail.tscn"
+	
+
+# **********************
+# Placement and stuff variables
+# **********************
+
+# returns true if the object can be placed
+#func ValidPlacement() -> bool:
+#	var placementCollision:Area = $PlacementCollision
+#
+#	if(placementCollision == null):
+#		return true
+#
+#	var bodiesArray = placementCollision.get_overlapping_bodies()
+#	var thisID = get_instance_id()
+#
+#	for body in bodiesArray:
+#		# we need to get the parent scene's data
+#		var bodyID = body.get_parent().get_instance_id()
+#		var realBody = body.get_parent() 
+#
+#		if("type" in realBody && realBody.type == "Ship"):
+#			# if the colliding object is a ship, we want to ignore it
+#			# print("Ship collision detected, ignoring - not that it seems to be happeneing")
+#			# Ship collision should be ignored
+#			continue
+#		elif(bodyID != thisID):
+#			# if the collision object's ID is different from this ID, 
+##			print("colliding with a body")
+##			print(realBody)
+#			# this object is intersecting with something other than the ship and itself
+#			return false
+#
+#	# placement is valid
+#	return true 
+	
+	
+# If the placement is valid, this will show a green outline, else red 
+func DisplayValidPlacement(canPlace: bool):
+	$Invalid.visible = !canPlace
