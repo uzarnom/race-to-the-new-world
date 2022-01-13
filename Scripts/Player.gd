@@ -287,6 +287,7 @@ func build(ship:Node, castResult):
 	buildable = null
 	buildable = buildableToInstance.instance()
 	add_child(buildable)
+	buildable.global_transform.origin = castResult.get_collision_point()
 	#ship.triggerRecalc()
 	pass
 
